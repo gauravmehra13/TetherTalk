@@ -62,7 +62,48 @@ export const useChatStore = create((set, get) => ({
   unsubscribeFromMessages: () => {
     const socket = useAuthStore.getState().socket;
     socket.off("newMessage");
+    socket.off("messageDeleted");
+    socket.off("conversationDeleted");
   },
 
   setSelectedUser: (selectedUser) => set({ selectedUser }),
+
+  deleteMessage: async (messageId) => {
+    try {
+      await axiosInstance.delete(`/messages/message/${messageId}`);
+      set({ messages: get().messages.filter((message) => message._id !== messageId) });
+      toast.success("Message deleted successfully");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  },
+
+  deleteConversation: async () => {
+    const { selectedUser } = get();
+    if (!selectedUser) return;
+
+    try {
+      await axiosInstance.delete(`/messages/conversation/${selectedUser._id}`);
+      set({ messages: [], selectedUser: null });
+      toast.success("Conversation deleted successfully");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  },
+
+  handleSocketEvents: () => {
+    const socket = useAuthStore.getState().socket;
+    const { selectedUser } = get();
+
+    socket.on("messageDeleted", (messageId) => {
+      set({ messages: get().messages.filter((message) => message._id !== messageId) });
+    });
+
+    socket.on("conversationDeleted", (deletedByUserId) => {
+      if (selectedUser && selectedUser._id === deletedByUserId) {
+        set({ messages: [], selectedUser: null });
+        toast.info("This conversation was deleted by the other user");
+      }
+    });
+  },
 }));
