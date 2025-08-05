@@ -25,7 +25,8 @@ const MessageOptionsMenu = ({ onDelete }) => {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-base-200 rounded-full"
+        className="p-1 hover:bg-base-200 rounded-full"
+        title="Message options"
       >
         <MoreVertical size={16} />
       </button>

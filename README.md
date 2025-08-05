@@ -1,36 +1,62 @@
-# ✨ Full Stack Realtime Chat App ✨
+# ✨ TetherTalk - MERN Stack Chat App ✨
 
-TechStack:
+Welcome to our comprehensive guide for setting up and running the Full Stack Realtime Chat App. This project leverages cutting-edge technologies to provide a seamless and engaging user experience.
 
-- ViteJS
-- Tailwind CSS
-- Zustand
-- Socket io
-- MongoDB
-- Mongoose
+**Tech Stack:**
 
-### Setup .env file
+- **ViteJS**: A modern development server that provides fast and efficient project setup and management.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **Zustand**: A state management library for React applications.
+- **Socket.io**: A JavaScript library for real-time communication over the web.
+- **MongoDB**: A NoSQL document-based database for storing and managing data.
+- **Mongoose**: A MongoDB ORM for Node.js that simplifies database interactions.
+
+**Features:**
+
+- **Authentication (JWT)**: Secure user authentication using JSON Web Tokens.
+- **Active Users**: Real-time tracking of active users for a more engaging experience.
+- **Realtime Messaging**: Instant messaging capabilities for seamless communication.
+- **Image Upload**: Users can share images with each other, enhancing the chat experience.
+- **Deleting Conversation**: Users can delete conversations, ensuring a clean and organized chat history.
+- **Profile Update**: Users can update their profiles, including profile pictures and other information.
+- **Beautiful Themes (with Daisy)**: A visually appealing theme system, including the Daisy theme, to enhance the user interface.
+
+**Setting Up the Environment Variables:**
+
+To ensure the app runs smoothly, you need to configure the environment variables in the `.env` file. Please follow the format below:
 
 ```js
-MONGODB_URI=...
+MONGODB_URI=your_mongodb_uri_here
 PORT=5001
-JWT_SECRET=...
+JWT_SECRET=your_jwt_secret_here
 
-CLOUDINARY_CLOUD_NAME=...
-CLOUDINARY_API_KEY=...
-CLOUDINARY_API_SECRET=...
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name_here
+CLOUDINARY_API_KEY=your_cloudinary_api_key_here
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret_here
 
 NODE_ENV=development
+CLIENT_URL=http://localhost:3000 // Ensure this matches your VITE_API_URL
 ```
 
-### Build the app
+Additionally, you need to configure Vite-specific environment variables in the `vite.config.js` file:
+
+```js
+VITE_API_URL=http://localhost:5001
+VITE_MODE=development
+```
+
+**Building and Starting the App:**
+
+To build the app, run the following command in your terminal:
 
 ```shell
 npm run build
 ```
 
-### Start the app
+Once the build process is complete, you can start the app using:
 
 ```shell
 npm start
 ```
+
+This will launch the app in development mode, allowing you to test and interact with it.

@@ -32,7 +32,13 @@ const ChatContainer = () => {
     handleSocketEvents();
 
     return () => unsubscribeFromMessages();
-  }, [selectedUser._id, getMessages, subscribeToMessages, handleSocketEvents, unsubscribeFromMessages]);
+  }, [
+    selectedUser._id,
+    getMessages,
+    subscribeToMessages,
+    handleSocketEvents,
+    unsubscribeFromMessages,
+  ]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
@@ -60,16 +66,17 @@ const ChatContainer = () => {
             <MessageSquare size={48} className="mb-4 opacity-50" />
             <h3 className="text-lg font-medium mb-2">No messages yet</h3>
             <p className="text-center max-w-sm">
-              Start a conversation with {selectedUser.fullName} by sending your first message below!
+              Start a conversation with {selectedUser.fullName} by sending your
+              first message below!
             </p>
           </div>
         ) : (
           <div className="space-y-4">
             {messages.map((message, index) => {
-              // Check if we need to show a date separator
-              const showDateSeparator = index === 0 || 
-                new Date(message.createdAt).toDateString() !== 
-                new Date(messages[index - 1].createdAt).toDateString();
+              const showDateSeparator =
+                index === 0 ||
+                new Date(message.createdAt).toDateString() !==
+                  new Date(messages[index - 1].createdAt).toDateString();
 
               return (
                 <div key={message._id}>
@@ -83,26 +90,37 @@ const ChatContainer = () => {
                           yesterday.setDate(yesterday.getDate() - 1);
 
                           // Today
-                          if (messageDate.toDateString() === today.toDateString()) {
+                          if (
+                            messageDate.toDateString() === today.toDateString()
+                          ) {
                             return "Today";
                           }
 
                           // Yesterday
-                          if (messageDate.toDateString() === yesterday.toDateString()) {
+                          if (
+                            messageDate.toDateString() ===
+                            yesterday.toDateString()
+                          ) {
                             return "Yesterday";
                           }
 
                           // Within last 7 days
-                          const diffInDays = Math.floor((today - messageDate) / (1000 * 60 * 60 * 24));
+                          const diffInDays = Math.floor(
+                            (today - messageDate) / (1000 * 60 * 60 * 24)
+                          );
                           if (diffInDays < 7) {
-                            return messageDate.toLocaleDateString("en-US", { weekday: "long" });
+                            return messageDate.toLocaleDateString("en-US", {
+                              weekday: "long",
+                            });
                           }
 
                           // This year
-                          if (messageDate.getFullYear() === today.getFullYear()) {
+                          if (
+                            messageDate.getFullYear() === today.getFullYear()
+                          ) {
                             return messageDate.toLocaleDateString("en-US", {
                               month: "long",
-                              day: "numeric"
+                              day: "numeric",
                             });
                           }
 
@@ -110,58 +128,63 @@ const ChatContainer = () => {
                           return messageDate.toLocaleDateString("en-US", {
                             month: "long",
                             day: "numeric",
-                            year: "numeric"
+                            year: "numeric",
                           });
                         })()}
                       </div>
                     </div>
                   )}
-              <div
-                key={message._id}
-                className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"} group/message animate-slide-in`}
-                ref={messageEndRef}
-              >
-                <div className="chat-image avatar">
-                  <div className="size-10 rounded-full border">
-                    <img
-                      src={
-                        message.senderId === authUser._id
-                          ? authUser.profilePic || "/avatar.png"
-                          : selectedUser.profilePic || "/avatar.png"
-                      }
-                      alt="profile pic"
-                    />
-                  </div>
-                </div>
-                <div className="chat-header mb-1 flex items-center gap-2">
-                  <time className="text-xs opacity-50">
-                    {formatMessageTime(message.createdAt)}
-                  </time>
-                  {/* Options menu - only show for sender's messages */}
-                  {message.senderId === authUser._id && (
-                    <div className="opacity-0 group-hover/message:opacity-100 transition-opacity">
-                      <MessageOptionsMenu
-                        onDelete={() => deleteMessage(message._id)}
-                      />
+                  <div
+                    key={message._id}
+                    className={`chat ${
+                      message.senderId === authUser._id
+                        ? "chat-end"
+                        : "chat-start"
+                    } group/message animate-slide-in`}
+                    ref={messageEndRef}
+                  >
+                    <div className="chat-image avatar">
+                      <div className="size-10 rounded-full border">
+                        <img
+                          src={
+                            message.senderId === authUser._id
+                              ? authUser.profilePic || "/avatar.png"
+                              : selectedUser.profilePic || "/avatar.png"
+                          }
+                          alt="profile pic"
+                        />
+                      </div>
                     </div>
-                  )}
-                </div>
-                <div className="chat-bubble flex flex-col">
-                  {message.image && (
-                    <button 
-                      onClick={() => setSelectedImage(message.image)}
-                      className="mb-2 hover:opacity-90 transition-opacity"
-                    >
-                      <img
-                        src={message.image}
-                        alt="Attachment"
-                        className="sm:max-w-[200px] rounded-md"
-                      />
-                    </button>
-                  )}
-                  {message.text && <p>{message.text}</p>}
-                </div>
-              </div>
+                    <div className="chat-header mb-1 flex items-center gap-2">
+                      <div className="flex items-center gap-2">
+                        <time className="text-xs opacity-50">
+                          {formatMessageTime(message.createdAt)}
+                        </time>
+                        {message.senderId === authUser._id && (
+                          <div className="opacity-0 group-hover/message:opacity-100 transition-opacity duration-200">
+                            <MessageOptionsMenu
+                              onDelete={() => deleteMessage(message._id)}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="chat-bubble flex flex-col">
+                      {message.image && (
+                        <button
+                          onClick={() => setSelectedImage(message.image)}
+                          className="mb-2 hover:opacity-90 transition-opacity"
+                        >
+                          <img
+                            src={message.image}
+                            alt="Attachment"
+                            className="sm:max-w-[200px] rounded-md"
+                          />
+                        </button>
+                      )}
+                      {message.text && <p>{message.text}</p>}
+                    </div>
+                  </div>
                 </div>
               );
             })}
