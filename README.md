@@ -35,13 +35,13 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key_here
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret_here
 
 NODE_ENV=development
-CLIENT_URL=http://localhost:3000 // Ensure this matches your VITE_API_URL
+CLIENT_URL=http://localhost:5173 // Ensure this matches your VITE_API_URL
 ```
 
 Additionally, you need to configure Vite-specific environment variables in the `vite.config.js` file:
 
 ```js
-VITE_API_URL=http://localhost:5001
+VITE_API_URL=http://localhost:5173
 VITE_MODE=development
 ```
 
