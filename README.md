@@ -21,6 +21,10 @@ Welcome to our comprehensive guide for setting up and running the Full Stack Rea
 - **Profile Update**: Users can update their profiles, including profile pictures and other information.
 - **Beautiful Themes (with Daisy)**: A visually appealing theme system, including the Daisy theme, to enhance the user interface.
 
+**Product Images:**
+
+You can find product images in the `public/project-images` directory. The images are named `tethertalk1.png` and `tethertalk2.png`.
+
 **Setting Up the Environment Variables:**
 
 To ensure the app runs smoothly, you need to configure the environment variables in the `.env` file. Please follow the format below:
@@ -35,28 +39,30 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key_here
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret_here
 
 NODE_ENV=development
-CLIENT_URL=http://localhost:3000 // Ensure this matches your VITE_API_URL
+CLIENT_URL=http://localhost:5173 // Ensure this matches your VITE_API_URL
 ```
 
 Additionally, you need to configure Vite-specific environment variables in the `vite.config.js` file:
 
 ```js
-VITE_API_URL=http://localhost:5001
+VITE_API_URL=http://localhost:5173
 VITE_MODE=development
 ```
 
-**Building and Starting the App:**
+**Starting the App Locally:**
 
-To build the app, run the following command in your terminal:
+To start the app locally, follow these steps:
 
-```shell
-npm run build
-```
+**Backend:**
 
-Once the build process is complete, you can start the app using:
+1. Navigate to the /backend directory in your terminal.
+2. Run `npm run dev` to start the backend server.
+3. The backend server will be running on `http://localhost:5001`.
 
-```shell
-npm start
-```
+**Frontend:**
 
-This will launch the app in development mode, allowing you to test and interact with it.
+1. Navigate to the /frontend directory in your terminal.
+2. Run `npm run dev` to start the frontend server.
+3. The frontend server will be running on `http://localhost:5173`.
+
+Open your web browser and navigate to `http://localhost:5173` to access the app.
