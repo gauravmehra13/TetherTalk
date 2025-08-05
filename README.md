@@ -1,6 +1,6 @@
-# 🌟 TetherTalk - A Cutting-Edge MERN Stack Chat App 🌟
+# 🌟 TetherTalk - MERN Stack Chat App 🌟
 
-👋 Welcome to TetherTalk, a comprehensive guide for setting up and running a Full Stack Realtime Chat App 📱. This project leverages the latest technologies to provide a seamless, engaging, and visually appealing user experience 🌈.
+👋 Welcome to TetherTalk, a Full Stack Realtime Chat App 📱. This project leverages the latest technologies to provide a seamless, engaging, and visually appealing user experience 🌈.
 
 **Product Images:**
 
@@ -43,7 +43,7 @@ NODE_ENV=development
 CLIENT_URL=http://localhost:5173 // Ensure this matches your VITE_API_URL
 ```
 
-Additionally, you need to configure Vite-specific environment variables in the `vite.config.js` file:
+Additionally, you need to configure Vite-specific environment variables in the `.env` file:
 
 ```js
 VITE_API_URL=http://localhost:5173
@@ -57,13 +57,15 @@ VITE_MODE=development
 **Backend:**
 
 1. Navigate to the `/backend` directory in your terminal.
-2. Run `npm run dev` to start the backend server.
-3. The backend server will be running on `http://localhost:5001`.
+2. Install the required packages `npm install`.
+3. Run `npm run dev` to start the backend server.
+4. The backend server will be running on `http://localhost:5001`.
 
 **Frontend:**
 
 1. Navigate to the `/frontend` directory in your terminal.
-2. Run `npm run dev` to start the frontend server.
-3. The frontend server will be running on `http://localhost:5173`.
+2. Install the required packages `npm install`.
+3. Run `npm run dev` to start the frontend server.
+4. The frontend server will be running on `http://localhost:5173`.
 
 Open your web browser and navigate to `http://localhost:5173` to access the app 📱.
