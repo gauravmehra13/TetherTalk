@@ -21,7 +21,7 @@ const LoginPage = () => {
       {/* Left Side - Image */}
       <div className="hidden lg:block w-1/2 relative">
         <img
-          src="/public/texting.jpg"
+          src="texting.jpg"
           alt="Login"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -125,7 +125,7 @@ const LoginPage = () => {
 
           <div className="text-center">
             <p className="text-base-content/60 text-lg">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 to="/signup"
                 className="link link-primary link-hover font-medium"
